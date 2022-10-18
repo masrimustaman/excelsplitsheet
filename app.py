@@ -23,7 +23,7 @@ st.title("Split Excel")
 # %%
 
 # streamlit uploader 
-st.write("Choose an excel file:")
+st.write("STEP 1 : Choose an excel file:")
 uploaded_file = st.file_uploader("The excel file must only contains 1 table only")
 
 # Checking if files is uploaded
@@ -36,13 +36,13 @@ if uploaded_file is not None:
 
     # Getting input and to remove column that user selected
     col_to_remove = st.multiselect(
-    'Please select the columns you would like to remove (if any)',column_names)
+    'STEP 2 : Please select the columns you would like to remove (if any)',column_names)
 
     df = df.drop(columns=col_to_remove)
 
     # Getting input on the column that user wanted to split
     col_to_split = st.selectbox(
-    'Please select the one column you would like to split',
+    'STEP 3 : Please select the one column you would like to split',
     column_names[1:], index=1)
 
     # Data cleaning
@@ -53,7 +53,7 @@ if uploaded_file is not None:
     sheet_name = df[col_to_split].unique()
 
     #Preview of the 1st sheet
-    st.write("Preview of the 1st sheet:")
+    st.write("STEP 4 : Validate the sample preview of the 1st sheet:")
     first_df = df[df[col_to_split] == sheet_name[0]] #specify the 1st sheet name here
     st.dataframe(first_df)
 
